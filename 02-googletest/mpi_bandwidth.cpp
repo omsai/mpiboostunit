@@ -34,7 +34,7 @@ const int ERR_UNEVEN_MPI_NUM_TASKS = 3;
 int main (int argc, char *argv[])
 {
 int     numtasks, rank, n, i, j, rndtrps, nbytes, start, end, incr,
-        src, dest, rc, tag=1, namelength;
+        src, dest, rc, tag=1;
 std::vector<int> taskpairs;
 double  thistime, bw, bestbw, worstbw, totalbw, avgbw,
         bestall, avgall, worstall,
@@ -44,7 +44,6 @@ mpi::timer timer;
 char msgbuf[ENDSIZE];
 std::string host;
 std::vector<std::string> hostmap;
-MPI_Status status;
 
 /* Some initializations and error checking */
 mpi::environment env(argc, argv);

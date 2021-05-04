@@ -12,6 +12,7 @@ find_package(MPI REQUIRED)
 find_package(Boost REQUIRED mpi serialization)
 
 set(CMAKE_CXX_COMPILER "${MPI_CXX_COMPILER}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -Wno-long-long -pedantic")
 add_executable(mpi_bandwidth mpi_bandwidth)
 target_link_libraries(mpi_bandwidth ${Boost_LIBRARIES})
 install(TARGETS mpi_bandwidth DESTINATION bin)
