@@ -10,6 +10,7 @@
 * MAINTAINER: Pariksheet Nanda
 * LAST REVISED: 05/03/21
 ****************************************************************************/
+#include "mpi_bandwidth_util.hpp"
 #include <boost/mpi/environment.hpp>
 #include <boost/mpi/communicator.hpp>
 #include <boost/mpi/collectives.hpp>
@@ -68,10 +69,7 @@ host = env.processor_name();
 gather(world, host, hostmap, 0);
 
 /* Determine who my send/receive partner is and tell task 0 */
-if (rank < numtasks/2)
-  dest = src = numtasks/2 + rank;
-if (rank >= numtasks/2)
-  dest = src = rank - numtasks/2;
+pair_src_dest(rank, numtasks, &src, &dest);
 gather(world, dest, taskpairs, 0);
 
 if (rank == 0) {
